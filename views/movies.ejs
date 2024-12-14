@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+</head>
+<body>
+  <h1>Movies</h1>
+  <ul>
+    <% movies.forEach((movie) => { %>
+      <li><span style="color: brown;"><%= movie.title %></span>
+         released in 
+         <span style="font-weight: bold;"><%= movie.release_year %> </span>
+         by 
+         <span style="font-style: italic; font-weight: bold; color: green;"><%= movie.first_name %> <%= movie.last_name %></span>
+         <img src="<%= movie.img_url %>">
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

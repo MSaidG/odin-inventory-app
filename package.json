@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "node --env-file=.env app.js",
+    "dev": "node --env-file=.env --watch app.js",
+    "fill": "node --env-file=.env db/fill.js"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
