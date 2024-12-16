@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update | Movie</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include('partials/nav')  %>
+
+  <div>
+    <form action="/movies/update/<%= movie.id %>" method="POST" data-doc="<%= movie.id %>" data-title="<%= movie.title %>">
+      <label for="release_year">Release Year</label>
+      <input type="number" name="release_year" value="<%= movie.release_year %>">
+      <label for="first_name">Director First Name</label>
+      <input type="text" name="first_name" value="<%= movie.first_name %>">
+      <label for="last_name">Director Last Name</label>
+      <input type="text" name="last_name" value="<%= movie.last_name %>">
+      <label for="runtime">Runtime</label>
+      <input type="number" name="runtime" value="<%= movie.runtime %>">
+      <label for="meta_score">Meta Score</label>
+      <input type="number" name="meta_score" value="<%= movie.meta_score %>">
+      <label for="imdb_score">IMDB Score</label>
+      <input type="number" name="imdb_score" value="<%= movie.imdb_score %>">
+      <label for="revenue_in_dollar">Total Gross in $</label>
+      <input type="number" name="revenue_in_dollar" value="<%= movie.revenue_in_dollar %>">
+      <label for="overview">Overview</label>
+      <textarea name="overview" id="overview" cols="30" rows="10"><%= movie.overview %></textarea>
+      <input type="submit" value="UPDATE">
+    </form>
+  </div>
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = e.target.getAttribute('data-doc');
+      const title = e.target.getAttribute('data-title');
+      const release_year = e.target.release_year.value;
+      const first_name = e.target.first_name.value;
+      const last_name = e.target.last_name.value;
+      const runtime = e.target.runtime.value;
+      const meta_score = e.target.meta_score.value;
+      const imdb_score = e.target.imdb_score.value;
+      const revenue_in_dollar = e.target.revenue_in_dollar.value;
+      const overview = e.target.overview.value;
+      const endpoint = `/movies/update/${id}`;
+      fetch(endpoint, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: title,
+          release_year: release_year,
+          first_name: first_name,
+          last_name: last_name,
+          runtime: runtime,
+          meta_score: meta_score,
+          imdb_score: imdb_score,
+          revenue_in_dollar: revenue_in_dollar,
+          overview: overview
+        })
+      })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        window.location.href = `/movies/${title}`;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>

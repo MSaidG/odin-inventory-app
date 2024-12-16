@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { insertMovies, truncate } = require("./db");
 const { parse } = require("csv-parse");
 
 const filePath = path.join(__dirname, "data/imdb_top_1000.csv");

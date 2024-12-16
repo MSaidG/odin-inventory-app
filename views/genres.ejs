@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genres</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <ul class="movie-list">
+    <% genres.forEach((genre) => { %>
+      <li class="movie-item">
+        <a class="list-button" href="/genres/<%= genre.name %>">
+          <p><%= genre.name %></p>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

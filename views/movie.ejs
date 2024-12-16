@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movie.title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="movie-body">
+  <%- include('partials/nav')  %>
+
+  <div class="movie">
+    <img src="<%= movie.img_url %>">
+    <h1><%= movie.title %></h1>
+    <h2>About</h2>
+    <p><%= movie.overview %></p>
+    <p>Directed by: <%= movie.first_name %> <%= movie.last_name %></p>
+    <p>Relased in: <%= movie.release_year %></p>
+    <p>Runtime: <%= movie.runtime %> minutes</p>
+    <p>Meta score: <%= movie.meta_score %></p>
+    <p>IMDB score: <%= movie.imdb_score %></p>
+    <p>Total gross in <%= movie.region %>: $<%= movie.revenue_in_dollar %></p>
+    <p>ID: <%= movie.movie_id %></p>
+    <a class="button delete" href="/movies" data-doc="<%= movie.title %>">DELETE</a>
+    <a class="button" href="/movies/update/<%= movie.movie_id %>">UPDATE</a>
+  </div>
+
+  <script>
+    const deleteButton = document.querySelector('a.delete');
+
+    deleteButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const title = e.target.getAttribute('data-doc');
+      const endpoint = `/movies/${title}`;
+      
+      fetch(endpoint, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: null
+      })
+      .then(res => {
+        res.json();
+      })
+      .then(data => {
+        window.location.href = '/movies';
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    });
+  </script>
+</body>
+</html>
