@@ -191,8 +191,20 @@ a.genre-delete{
   align-self: flex-end;
 }
 
+a:hover{
+  color: #494949 !important;
+  border-radius: 10px;
+  border-color: #494949 !important;
+  transition: all 0.3s ease 0s;
+}
+
 body.genre-body{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+div.buttons{
+  display: flex;
   justify-content: center;
 }

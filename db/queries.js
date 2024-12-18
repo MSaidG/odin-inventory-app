@@ -1,8 +1,11 @@
 const pool = require("./pool");
 
 async function getMovies() {
+  // const movie = await pool.query(
+  //   "SELECT * FROM movie JOIN movie_director ON movie.id=movie_director.movie_id JOIN director ON director.id=movie_director.director_id JOIN person ON person.id=director.person_id;"
+  // );
   const movie = await pool.query(
-    "SELECT * FROM movie JOIN movie_director ON movie.id=movie_director.movie_id JOIN director ON director.id=movie_director.director_id JOIN person ON person.id=director.person_id;"
+    "SELECT * FROM movie;"
   );
   return movie.rows;
 }

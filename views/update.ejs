@@ -37,6 +37,13 @@
     const form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      let input = prompt("Please enter admin password: ");
+      if (input !== "admin") {
+        alert("Incorrect password!");
+        return;
+      }
+
       const id = e.target.getAttribute('data-doc');
       const title = e.target.getAttribute('data-title');
       const release_year = e.target.release_year.value;

@@ -23,8 +23,10 @@
     <p>Genres: <%= movie.genre_names %></p>
     <p>Actors: <%= movie.actor_names %></p>
     <p>ID: <%= movie.id %></p>
-    <a class="button delete" href="/movies" data-doc="<%= movie.title %>">DELETE</a>
-    <a class="button" href="/movies/update/<%= movie.id %>">UPDATE</a>
+    <div class="buttons">
+      <a class="button delete" href="/movies" data-doc="<%= movie.title %>">DELETE</a>
+      <a class="button update" href="/movies/update/<%= movie.id %>" data-doc="<%= movie.id %>">UPDATE</a>
+    </div>
   </div>
 
   <script>
@@ -32,6 +34,13 @@
 
     deleteButton.addEventListener('click', (e) => {
       e.preventDefault();
+
+      let input = prompt("Please enter admin password: ");
+      if (input !== "admin") {
+        alert("Incorrect password!");
+        return;
+      }
+
       const title = e.target.getAttribute('data-doc');
       const endpoint = `/movies/${title}`;
       
@@ -53,6 +62,7 @@
       });
 
     });
+
   </script>
 </body>
 </html>

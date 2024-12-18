@@ -16,9 +16,8 @@
           <div>
             <span style="color: brown; font-weight: bold;"><%= movie.title %></span>
             released in 
-            <span style="font-weight: bold;"><%= movie.release_year %></span>,
-            directed by 
-            <span style="font-style: italic; font-weight: bold; color: green;"><%= movie.first_name %> <%= movie.last_name %></span>.
+            <span style="font-weight: bold;"><%= movie.release_year %></span><br><br>
+            <span style="font-style: italic; font-weight: bold; color: dimgray;"><%= movie.overview %></span>.
           </div>
           <img src="<%= movie.img_url %>">
         </a>
