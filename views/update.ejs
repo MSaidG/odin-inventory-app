@@ -41,8 +41,8 @@
       const title = e.target.getAttribute('data-title');
       const release_year = e.target.release_year.value;
       const director_name = e.target.director_name.value;
-      const first_name = director_name.split(" ").slice(0, -1).join(" ");
-      const last_name = director_name.split(" ").slice(-1).join(" ");
+      const director_first_name = director_name.split(" ").slice(0, -1).join(" ");
+      const director_last_name = director_name.split(" ").slice(-1).join(" ");
       const runtime = e.target.runtime.value;
       const meta_score = e.target.meta_score.value;
       const imdb_score = e.target.imdb_score.value;
@@ -61,13 +61,15 @@
         body: JSON.stringify({
           title: title,
           release_year: release_year,
-          first_name: first_name,
-          last_name: last_name,
+          director_first_name: director_first_name,
+          director_last_name: director_last_name,
           runtime: runtime,
           meta_score: meta_score,
           imdb_score: imdb_score,
           revenue_in_dollar: revenue_in_dollar,
-          overview: overview
+          overview: overview,
+          genres: genres_array,
+          actors: actors_array
         })
       })
       .then((res) => {

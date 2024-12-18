@@ -32,6 +32,7 @@ app.get("/movies/update/:id", async (req, res) => {
 
 app.put("/movies/update/:id", async (req, res) => {
   const trimedOverview = req.body.overview.trim();
+
   await query.updateMovie(
     req.body.title,
     req.body.release_year,
@@ -39,9 +40,11 @@ app.put("/movies/update/:id", async (req, res) => {
     req.body.meta_score,
     req.body.imdb_score,
     trimedOverview,
-    req.body.first_name,
-    req.body.last_name,
-    req.body.revenue_in_dollar
+    req.body.director_first_name,
+    req.body.director_last_name,
+    req.body.revenue_in_dollar,
+    req.body.genres,
+    req.body.actors
   );
   res.redirect(`../${req.body.title}`);
 });
