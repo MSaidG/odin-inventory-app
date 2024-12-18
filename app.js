@@ -31,13 +31,14 @@ app.get("/movies/update/:id", async (req, res) => {
 });
 
 app.put("/movies/update/:id", async (req, res) => {
+  const trimedOverview = req.body.overview.trim();
   await query.updateMovie(
     req.body.title,
     req.body.release_year,
     req.body.runtime,
     req.body.meta_score,
     req.body.imdb_score,
-    req.body.overview,
+    trimedOverview,
     req.body.first_name,
     req.body.last_name,
     req.body.revenue_in_dollar
@@ -64,7 +65,16 @@ app.get("/genres", async (req, res) => {
 
 app.get("/genres/:name", async (req, res) => {
   const movies = await query.getMoviesByGenre(req.params.name);
-  res.render("genre", { title: `${req.params.name} Movies`, movies });
+  res.render("genre", { title: `${req.params.name} Movies`, movies, genre: req.params.name });
+});
+
+app.delete("/genres/:name", async (req, res) => {
+  await query.deleteGenre(req.params.name);
+  res.redirect(204, "/genres");
+});
+
+app.get("/movies/add", (req, res) => {
+  res.render("addMovie", { title: "Add Movie" });
 });
 
 const PORT = process.env.PORT || 8000;

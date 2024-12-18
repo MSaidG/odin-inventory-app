@@ -126,7 +126,7 @@ form {
 
 form{
   max-width: 400px;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 0 20px;
 }
 input, textarea {
@@ -179,4 +179,20 @@ h3{
 }
 .content{
   margin-left: 20px;
+}
+
+a.genre-delete{
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: flex-end;
+}
+
+body.genre-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -6,8 +6,9 @@
   <title>Genre</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="genre-body">
   <%- include('partials/nav')  %>
+  <a href="/genres" class="genre-delete button" data-doc="<%= genre %>">Delete Genre</a>
   <ul class="movie-list">
     <% movies.forEach((movie) => { %>
       <li class="movie-item">
@@ -23,6 +24,33 @@
         </a>
       </li>
     <% }); %>
-  
+  </ul>
+
+  <script>
+    const deleteButton = document.querySelector('a.genre-delete');
+
+    deleteButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = e.target.getAttribute('data-doc');
+      const endpoint = `/genres/${name}`;
+      
+      fetch(endpoint, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: null
+      })
+      .then(res => {
+        res.json();
+      })
+      .then(data => {
+        window.location.href = '/genres';
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    });
+  </script>
 </body>
 </html>

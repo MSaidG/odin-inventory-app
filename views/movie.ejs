@@ -14,15 +14,17 @@
     <h1><%= movie.title %></h1>
     <h2>About</h2>
     <p><%= movie.overview %></p>
-    <p>Directed by: <%= movie.first_name %> <%= movie.last_name %></p>
+    <p>Directed by: <%= movie.director_name %></p>
     <p>Relased in: <%= movie.release_year %></p>
     <p>Runtime: <%= movie.runtime %> minutes</p>
     <p>Meta score: <%= movie.meta_score %></p>
     <p>IMDB score: <%= movie.imdb_score %></p>
     <p>Total gross in <%= movie.region %>: $<%= movie.revenue_in_dollar %></p>
-    <p>ID: <%= movie.movie_id %></p>
+    <p>Genres: <%= movie.genre_names %></p>
+    <p>Actors: <%= movie.actor_names %></p>
+    <p>ID: <%= movie.id %></p>
     <a class="button delete" href="/movies" data-doc="<%= movie.title %>">DELETE</a>
-    <a class="button" href="/movies/update/<%= movie.movie_id %>">UPDATE</a>
+    <a class="button" href="/movies/update/<%= movie.id %>">UPDATE</a>
   </div>
 
   <script>

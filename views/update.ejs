@@ -13,10 +13,8 @@
     <form action="/movies/update/<%= movie.id %>" method="POST" data-doc="<%= movie.id %>" data-title="<%= movie.title %>">
       <label for="release_year">Release Year</label>
       <input type="number" name="release_year" value="<%= movie.release_year %>">
-      <label for="first_name">Director First Name</label>
-      <input type="text" name="first_name" value="<%= movie.first_name %>">
-      <label for="last_name">Director Last Name</label>
-      <input type="text" name="last_name" value="<%= movie.last_name %>">
+      <label for="director_name">Director Name</label>
+      <input type="text" name="director_name" value="<%= movie.director_name %>">
       <label for="runtime">Runtime</label>
       <input type="number" name="runtime" value="<%= movie.runtime %>">
       <label for="meta_score">Meta Score</label>
@@ -27,6 +25,11 @@
       <input type="number" name="revenue_in_dollar" value="<%= movie.revenue_in_dollar %>">
       <label for="overview">Overview</label>
       <textarea name="overview" id="overview" cols="30" rows="10"><%= movie.overview %></textarea>
+      <label for="genres">Genres</label>
+      <input type="text" name="genres" value="<%= movie.genre_names %>">
+      <label for="actors">Actors</label>
+      <input type="text" name="actors" value="<%= movie.actor_names %>">
+      
       <input type="submit" value="UPDATE">
     </form>
   </div>
@@ -37,13 +40,18 @@
       const id = e.target.getAttribute('data-doc');
       const title = e.target.getAttribute('data-title');
       const release_year = e.target.release_year.value;
-      const first_name = e.target.first_name.value;
-      const last_name = e.target.last_name.value;
+      const director_name = e.target.director_name.value;
+      const first_name = director_name.split(" ").slice(0, -1).join(" ");
+      const last_name = director_name.split(" ").slice(-1).join(" ");
       const runtime = e.target.runtime.value;
       const meta_score = e.target.meta_score.value;
       const imdb_score = e.target.imdb_score.value;
       const revenue_in_dollar = e.target.revenue_in_dollar.value;
       const overview = e.target.overview.value;
+      const genres = e.target.genres.value;
+      const genres_array = genres.split(", ");
+      const actors = e.target.actors.value;
+      const actors_array = actors.split(", ");
       const endpoint = `/movies/update/${id}`;
       fetch(endpoint, {
         method: 'PUT',
