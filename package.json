@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node --env-file=.env app.js",
+    "start": "node app.js",
     "dev": "node --env-file=.env --watch app.js",
     "fill": "node --env-file=.env db/fill.js"
   },
